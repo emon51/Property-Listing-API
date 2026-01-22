@@ -1,3 +1,7 @@
 
 # Configuration with secrets
 conf/app.conf
+
+
+# Compiled binary
+property-listing-api
