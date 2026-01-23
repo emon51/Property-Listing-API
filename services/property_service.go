@@ -121,6 +121,14 @@ func (s *PropertyService) transformToPropertyItem(external ExternalPropertyRespo
 		propertyTypeCategoryID = "2"
 	}
 
+
+	// Get slug from last categories items's last slug
+    slug := external.PropertySlug // Default
+    if len(categories) > 0 {
+           slug = categories[len(categories)-1].Slug
+        }
+
+
 	return models.PropertyItem{
 		ID:        external.ID,
 		Feed:      external.Feed,
@@ -134,7 +142,7 @@ func (s *PropertyService) transformToPropertyItem(external ExternalPropertyRespo
 			LocationID:  external.LocationID,
 			Lat:         lat,
 			Lng:         lng,
-			Slug:        external.PropertySlug,
+			Slug:        slug,
 		},
 		Property: models.Property{
 			Amenities:              amenities,
