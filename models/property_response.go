@@ -46,7 +46,6 @@ type Property struct {
 	PropertyName           string            `json:"PropertyName"`
 	PropertySlug           string            `json:"PropertySlug"`
 	PropertyType           string            `json:"PropertyType"`
-	PropertyTypeCategoryId string            `json:"PropertyTypeCategoryId"`
 	RoomSize               float64           `json:"RoomSize"`
 }
 

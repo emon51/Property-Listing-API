@@ -43,7 +43,7 @@ type ExternalPropertyResponse struct {
 	OwnerID                string                 `json:"owner_id"`
 	Archived               []string               `json:"archived"`
 	FeedProviderURL        string                 `json:"feed_provider_url"`
-	PropertyTypeCategoryID string                 `json:"property_type_category_id"`
+	
 }
 
 // NewPropertyService creates a new property service instance
@@ -110,16 +110,7 @@ func (s *PropertyService) transformToPropertyItem(external ExternalPropertyRespo
 		}
 	}
 
-	// Determine property type category ID (based on property type category)
-	propertyTypeCategoryID := "6" // Default
-	switch external.PropertyTypeCategory {
-	case "House":
-		propertyTypeCategoryID = "6"
-	case "Apartment":
-		propertyTypeCategoryID = "1"
-	case "Villa":
-		propertyTypeCategoryID = "2"
-	}
+
 
 
 	// Get slug from last categories items's last slug
@@ -157,7 +148,6 @@ func (s *PropertyService) transformToPropertyItem(external ExternalPropertyRespo
 			PropertyName:           external.PropertyName,
 			PropertySlug:           external.PropertySlug,
 			PropertyType:           external.PropertyTypeCategory,
-			PropertyTypeCategoryId: propertyTypeCategoryID,
 			RoomSize:               external.RoomSizeSqft,
 		},
 		Partner: models.Partner{
