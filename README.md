@@ -66,28 +66,16 @@ cd property-listing-api
 go mod tidy
 ```
 
-3. Copy the configuration template:
-```bash
-cp conf/app.conf.example conf/app.conf
-```
+3. To set configuration:
+- Rename **conf/app.conf.example** to **conf/app.conf**
+- Replace **api_key** with actual-api-key.
 
-4. Update `conf/app.conf` with your actual configuration:
-```ini
-appname = property-listing-api
-httpport = 5000
-runmode = dev
-
-location_api_base_url = http://192.168.0.35:8099/api
-property_api_base_url = http://192.168.0.35:8099/api
-
-api_key = actual-api-key
-```
 **Note:** 
 - You may change the httpport if needed; it will not affect the main functionality.
 - location_api_base_url and property_api_base_url are two External API Configuration
 - Please feel free to reach out to me for the actual API key
 
-5. Run the application:
+4. Run the application:
 ```bash
 go run main.go
 ```
@@ -96,7 +84,8 @@ or
 bee run
 ```
 
-The API will be available at `http://localhost:5000`
+The API will be available at `http://localhost:5000` and you will able to see the home page.
+
 
 
 ## API Documentation
@@ -180,6 +169,96 @@ curl -X GET "http://localhost:5000/v1/properties/usa:florida:destin?items=true" 
   ]
 }
 ```
+
+```
+
+### Error Responses
+
+#### 400 Bad Request - Missing Parameters
+```json
+{
+  "error": "location parameter is required"
+}
+```
+```json
+{
+  "error": "items parameter must be true"
+}
+```
+
+#### 401 Unauthorized - Invalid API Key
+```json
+{
+  "error": "x-api-key header is required"
+}
+```
+```json
+{
+  "error": "invalid API key"
+}
+```
+
+#### 502 Bad Gateway - External API Error
+```json
+{
+  "error": "failed to fetch property IDs from location service"
+}
+```
+```json
+{
+  "error": "failed to fetch property details from property service"
+}
+```
+
+
+## Key Features
+
+### Concurrent Processing
+The API fetches property details concurrently using goroutines, maintaining the original order of property IDs while maximizing performance.
+
+### Data Transformation
+External API responses are automatically transformed to match the standardized response format defined in the assignment.
+
+### Comprehensive Validation
+All inputs are validated with appropriate error messages:
+- API key authentication
+- Required parameters check
+- Parameter value validation
+
+### Proper HTTP Status Codes
+- `200` - Success
+- `400` - Bad Request (validation errors)
+- `401` - Unauthorized (invalid API key)
+- `502` - Bad Gateway (external API failures)
+- `500` - Internal Server Error
+
+## Development
+
+### Running Tests
+```bash
+go test ./...
+```
+
+### Building the Binary
+```bash
+go build -o property-listing-api
+```
+
+### Running the Binary
+```bash
+./property-listing-api
+```
+
+## Configuration
+
+All configuration is managed through `conf/app.conf`:
+
+- `httpport`: Server port (default: 5000)
+- `runmode`: dev/prod mode
+- `location_api_base_url`: Location service endpoint
+- `property_api_base_url`: Property service endpoint
+- `api_key`: API authentication key
+
 
 
 
