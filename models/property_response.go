@@ -49,7 +49,7 @@ type Property struct {
 	RoomSize               float64           `json:"RoomSize"`
 }
 
-// Counts represents bedroom, bathroom, and occupancy counts
+// Counts represents bedroom, bathroom and occupancy counts
 type Counts struct {
 	Bedroom   int `json:"Bedroom"`
 	Bathroom  int `json:"Bathroom"`

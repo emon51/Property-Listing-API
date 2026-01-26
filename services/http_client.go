@@ -37,3 +37,5 @@ func (c *HTTPClient) Get(url string) ([]byte, error) {
 
 	return body, nil
 }
+
+

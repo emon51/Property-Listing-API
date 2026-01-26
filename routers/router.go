@@ -12,8 +12,11 @@ func init() {
 
 	// API v1 namespace
 	ns := bee.NewNamespace("/v1",
-		// Property listing endpoint
+		// Property listing endpoint with location
 		bee.NSRouter("/properties/:location", &controllers.PropertyController{}),
+		// Property listing endpoint without location (handles empty location)
+		bee.NSRouter("/properties", &controllers.PropertyController{}),
+		bee.NSRouter("/properties/", &controllers.PropertyController{}),
 	)
 
 	// Register the namespace

@@ -30,7 +30,7 @@ func (c *PropertyController) Get() {
 	// Get location from path parameter
 	location := c.Ctx.Input.Param(":location")
 
-	// Validate location
+	// Validate location (check if empty) - return 400
 	if err := utils.ValidateLocation(location); err != nil {
 		c.sendErrorResponse(400, err.Error())
 		return
