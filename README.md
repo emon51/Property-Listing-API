@@ -174,12 +174,13 @@ curl -X GET "http://localhost:5000/v1/properties/usa:florida:destin?items=true" 
 
 ### Error Responses
 
-#### 400 Bad Request - Missing location Parameter
+#### 400 Bad Request - Missing location Parameter and keep items=false
 ```json
 {
   "error": "location parameter is required"
 }
 ```
+
 ```json
 {
   "error": "items parameter must be true"
