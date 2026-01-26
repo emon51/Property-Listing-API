@@ -7,4 +7,4 @@ location_api_base_url = http://192.168.0.35:8099/api
 property_api_base_url = http://192.168.0.35:8099/api
 
 # API Key
-api_key = actual-api-keyyyy
+api_key = actual-api-key
