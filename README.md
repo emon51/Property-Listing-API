@@ -41,24 +41,17 @@ property-listing-api/
 
 ## Tech Stack
 
-- **Framework**: Beego v2
-- **Language**: Go 1.21+
+- **Framework**: Beego
+- **Language**: Go 
 - **Architecture**: RESTful API with concurrent processing
 
 
-## Getting Started
+##  Quick Setup
 
-### Prerequisites
-
-- Go 1.21 or higher
-- Access to external property APIs
-
-### Installation
-
-1. Clone the repository or download the zip file of the project
+1. Clone the project
 ```bash
-git clone 
-cd property-listing-api
+git clone https://github.com/emon51/Property-Listing-API.git
+cd Property-Listing-API
 ```
 
 2. Install dependencies:
